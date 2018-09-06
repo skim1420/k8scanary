@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prod
+  labels:
+    k8scanary-cluster: prod
+  namespace: k8scanary
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      k8scanary-cluster: prod
+  template:
+    metadata:
+      labels:
+        k8scanary-cluster: prod
+        k8scanary-service: prod
+    spec:
+      containers:
+      - image: gcr.io/spinnaker-1022/k8scanary
+        name: k8scanary-prod
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            cpu: 10m
+          requests:
+            cpu: 10m
+

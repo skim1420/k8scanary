@@ -1,1 +1,1 @@
-# k8s canary
+# k8s simple demo
