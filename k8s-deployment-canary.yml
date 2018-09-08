@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: prod
+  name: canary
   labels:
     k8scanary-cluster: prod
   namespace: k8scanary
@@ -9,11 +9,11 @@ spec:
   replicas: 2
   selector:
     matchLabels:
-      k8scanary-cluster: prod
+      k8scanary-cluster: canary
   template:
     metadata:
       labels:
-        k8scanary-cluster: prod
+        k8scanary-cluster: canary
         k8scanary-service: prod
     spec:
       containers:
@@ -23,7 +23,7 @@ spec:
         - containerPort: 80
         resources:
           limits:
-            cpu: 100m
+            cpu: 5m
           requests:
-            cpu: 100m
+            cpu: 5m
 
